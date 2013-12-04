@@ -143,9 +143,6 @@ module TicTacToe
     winner == COMPUTER
   end
 
-  def tie?
-      ((winner != COMPUTER) && (winner != HUMAN)) 
-  end
 end
 
 helpers TicTacToe
@@ -164,7 +161,6 @@ get %r{^/([abc][123])?$} do |human|
       board[human] = TicTacToe::CIRCLE
       computer = smart_move
       return '/humanwins' if human_wins?
-      return '/tie' unless computer
       board[computer] = TicTacToe::CROSS
       puts "I played: #{computer}!"
       puts "Tablero:  #{board.inspect}"
@@ -227,27 +223,6 @@ get '/computerwins' do
   end
 end
 
-get '/tie' do
-  puts "/tie"
-  pp session
-  begin
-    m = if tie? then
-          if (session["usuario"] != nil)
-            un_usuario = Usuario.first(:username => session["usuario"])
-            contador = un_usuario.partidas_empatadas
-            contador = contador + 1
-            un_usuario.partidas_empatadas = contador
-            un_usuario.save
-          end
-          '¡Empate!'
-        else 
-          redirect '/'
-        end
-    haml :final, :locals => { :b => board, :m => m }
-  rescue
-    redirect '/'
-  end
-end
 
 #Captura informacion mediante Post
 post '/' do
