@@ -28,6 +28,7 @@ Contenido de La Aplicación
 * public/ - this is the default folder for serving static assets
 * Procfile - this tells Heroku or Foreman how to run the application
 * Rakefile- installs the gems and run the server
+
 ---
 
 Universidad de La Laguna
