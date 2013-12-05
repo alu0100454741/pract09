@@ -1,45 +1,32 @@
 .message
-        .tabla
-                %br
-                %br
-                %br
-                %br
-                %br
-                %center
-                        %h3 Ranking de usuarios Tic Tac Toe
-                        %br
-                        %table
-                                %tr
-                                        %th Nick
-                                        %th
-                                        %th
-                                        %th Ganadas
-                                        %th
-                                        %th
-                                        %th Perdidas
-                                        %th
-                                        %th
-                                        %th Empatadas
-                                - @usuarios.sort_by {|k, v| v}.reverse.each do |usuario| 
-                                        %tr
-                                                %td
-                                                        #{usuario.username}
-                                                %td
-                                                %td
-                                                %td
-                                                        #{usuario.partidas_ganadas}
-                                                %td
-                                                %td
-                                                %td        
-                                                        #{usuario.partidas_perdidas}
-                                                %td
-                                                %td
-
-                                        %tr
-                                        %tr
-                                        %tr
-                        %br
-                        %br
-        .volver
-                %a{:href=>"/"}
-                        Click aqui para volver al juego
+  .tabla
+    %br
+    %br
+    %br
+    %center
+      %h3 Ranking de usuarios Tic Tac Toe
+      %br
+      %table
+        %tr
+          %th Usuario
+          %th
+          %th Ganadas
+          %th
+          %th Perdidas
+        - @usuarios.sort_by {|k, v| v}.reverse.each do |usuario| 
+          %tr
+          %td
+            #{usuario.username}
+          %td
+          %td
+            #{usuario.partidas_ganadas}
+          %td
+          %td        
+            #{usuario.partidas_perdidas}
+          %td
+          %td
+            %br
+            %br
+  .volver
+    %a{:href=>"/"}
+      Click aqui para volver al juego
